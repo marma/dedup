@@ -4,7 +4,8 @@ from sys import stdin,stderr,stdout
 from re import compile,match,sub,split
 from hashlib import md5
 from collections import Counter
-from json import dump
+from json import dumps
+from multiprocessing import Pool
 
 split_sentence_p = r'([.!?][ .!?]*)'
 remove_chars = r'[^0-9a-zA-ZåäöÅÄÖéÉ\-]'
@@ -54,12 +55,19 @@ def chunker(i):
         yield (id, '\n'.join(d))
             
 
-if __name__ == '__main__':
-    # sentencize and get hashes
-    for i,text in chunker(stdin):
-        s = sentencize(text)
-        h = hashes(s)
+def work(chunk):
+    i,text = chunk
+    s = sentencize(text)
+    h = hashes(s)
+    
+    return dumps({ i: h })
 
-        dump({ i: h }, stdout)
-        print()
+
+if __name__ == '__main__':
+    n_processes = 4
+
+    # sentencize and get hashes
+    with Pool(processes=n_processes) as pool:
+        for jl in pool.imap_unordered(work, chunker(stdin)):
+            print(jl)
 
