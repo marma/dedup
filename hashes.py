@@ -9,7 +9,7 @@ from multiprocessing import Pool
 
 split_sentence_p = r'([.!?][ .!?]*)'
 remove_chars = r'[^0-9a-zA-ZåäöÅÄÖéÉ\-]'
-
+min_sentence_length = 32
 
 def normalize(text):
     return ' '.join(sub(remove_chars, ' ', text).split())
@@ -24,6 +24,9 @@ def sentencize(text):
 
 def hashes(sentences):
     ret = []
+
+    # ignore short sentences
+    sentences = [ x for x in sentences if len(x) > min_sentence_length ]
 
     if len(sentences) < 3:
         sentences += (3-len(sentences)) * [ '$' ]
@@ -64,7 +67,7 @@ def work(chunk):
 
 
 if __name__ == '__main__':
-    n_processes = 4
+    n_processes = 24
 
     # sentencize and get hashes
     with Pool(processes=n_processes) as pool:

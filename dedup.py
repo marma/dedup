@@ -41,4 +41,4 @@ if __name__ == '__main__':
                 print('skipped', doc[0], r, ra, '# after')
 
 
-print(len(used), len(counts))
+print(len(used), len(counts), sum([ x for x in counts.values() ]))
