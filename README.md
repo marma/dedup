@@ -2,11 +2,11 @@
 
 ## Requirements
 
-Text need to be delimited by lines starting with `## START ##` followed by a source and finally a URL
+Text need to be delimited by lines starting with `## START ##` followed by anything that identifies the document, for example source file and URI.
 
 Example:
 
-`### START archive.war https://example.org/`
+`## START ## archive.war https://example.org/`
 
 ## How to run
 
