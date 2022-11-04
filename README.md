@@ -2,7 +2,7 @@
 
 ## Requirements
 
-Text need to be delimited by lines starting with `### START` followed by a source and finally a URL
+Text need to be delimited by lines starting with `## START ##` followed by a source and finally a URL
 
 Example:
 
