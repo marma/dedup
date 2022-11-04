@@ -6,7 +6,10 @@ Text need to be delimited by lines starting with `## START ##` followed by anyth
 
 Example:
 
-`## START ## archive.war https://example.org/`
+```
+## START ## archive.war https://example.org/
+Text text text ...
+```
 
 ## How to run
 
