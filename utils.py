@@ -1,7 +1,7 @@
 
 
 def chunker(i):
-    # assume document starts with '### START'
+    # assume document starts with '## START ##'
     d = []
     id = None
 
